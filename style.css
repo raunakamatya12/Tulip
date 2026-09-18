@@ -1,0 +1,797 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    font-family: "Segoe UI", sans-serif;
+    color: white;
+
+    background:
+        radial-gradient(circle at 50% 80%, #173c2b 0%, transparent 35%),
+        linear-gradient(
+            to bottom,
+            #030414 0%,
+            #0b1030 48%,
+            #071a13 100%
+        );
+}
+
+/* =========================
+   STARS
+========================= */
+
+#stars {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: white;
+    opacity: 0;
+
+    animation:
+        starAppear 2s ease forwards,
+        twinkle 3s ease-in-out infinite;
+}
+
+@keyframes starAppear {
+    to {
+        opacity: 0.8;
+    }
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        transform: scale(0.7);
+        opacity: 0.35;
+    }
+
+    50% {
+        transform: scale(1.8);
+        opacity: 1;
+    }
+}
+
+/* =========================
+   MOON
+========================= */
+
+.moon {
+    position: absolute;
+    width: 105px;
+    height: 105px;
+    top: 8%;
+    right: 12%;
+
+    border-radius: 50%;
+
+    background: #fff9dc;
+
+    box-shadow:
+        0 0 25px rgba(255, 249, 220, 0.45),
+        0 0 80px rgba(255, 249, 220, 0.12);
+
+    opacity: 0;
+
+    animation: moonAppear 3s ease forwards;
+}
+
+@keyframes moonAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* =========================
+   MAIN MESSAGE
+========================= */
+
+.message {
+    position: absolute;
+
+    top: 8%;
+    left: 50%;
+
+    width: 90%;
+
+    text-align: center;
+
+    transform: translateX(-50%);
+
+    z-index: 20;
+
+    opacity: 0;
+
+    animation:
+        messageAppear 2.5s ease 6s forwards;
+}
+
+.message h1 {
+    font-size: clamp(32px, 6vw, 60px);
+
+    font-weight: 500;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 15px rgba(255,255,255,0.3),
+        0 0 35px rgba(255,100,150,0.15);
+}
+
+.message p {
+    margin-top: 12px;
+
+    font-size: 16px;
+
+    letter-spacing: 1px;
+
+    opacity: 0.75;
+}
+
+@keyframes messageAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateX(-50%)
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+}
+
+/* =========================
+   GARDEN
+========================= */
+
+.garden {
+    position: absolute;
+
+    width: 720px;
+    max-width: 100%;
+
+    height: 430px;
+
+    bottom: 7%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 10;
+}
+
+/* =========================
+   TULIPS
+========================= */
+
+.tulip {
+    position: absolute;
+
+    width: 90px;
+    height: 360px;
+
+    bottom: 0;
+
+    transform-origin: bottom center;
+
+    opacity: 0;
+
+    animation:
+        tulipAppear 1s ease forwards,
+        gentleSway 6s ease-in-out infinite;
+}
+
+/* Different locations */
+
+.tulip1 {
+    left: 5%;
+    animation-delay: 1s, 5s;
+}
+
+.tulip2 {
+    left: 21%;
+    animation-delay: 2s, 5.3s;
+}
+
+.tulip3 {
+    left: 39%;
+    animation-delay: 3s, 5.6s;
+}
+
+.tulip4 {
+    left: 58%;
+    animation-delay: 4s, 5.9s;
+}
+
+.tulip5 {
+    left: 75%;
+    animation-delay: 5s, 6.2s;
+}
+
+@keyframes tulipAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(30px)
+            scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+/* =========================
+   STEM
+========================= */
+
+.stem {
+    position: absolute;
+
+    width: 7px;
+
+    height: 0;
+
+    bottom: 0;
+    left: 42px;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        to right,
+        #164824,
+        #54a95e,
+        #164824
+    );
+
+    animation:
+        stemGrow 3s cubic-bezier(.22,.61,.36,1)
+        forwards;
+}
+
+.tulip1 .stem {
+    animation-delay: 1.2s;
+}
+
+.tulip2 .stem {
+    animation-delay: 2.2s;
+}
+
+.tulip3 .stem {
+    animation-delay: 3.2s;
+}
+
+.tulip4 .stem {
+    animation-delay: 4.2s;
+}
+
+.tulip5 .stem {
+    animation-delay: 5.2s;
+}
+
+@keyframes stemGrow {
+
+    from {
+        height: 0;
+    }
+
+    to {
+        height: 250px;
+    }
+}
+
+/* =========================
+   LEAVES
+========================= */
+
+.leaf {
+    position: absolute;
+
+    width: 80px;
+    height: 35px;
+
+    bottom: 80px;
+
+    border-radius:
+        100% 0 100% 0;
+
+    background: linear-gradient(
+        135deg,
+        #4b9f54,
+        #124522
+    );
+
+    opacity: 0;
+
+    animation:
+        leafAppear 1.8s ease forwards;
+}
+
+.leaf.left {
+    left: -25px;
+
+    transform:
+        rotate(-35deg)
+        scale(0);
+}
+
+.leaf.right {
+    left: 0;
+    bottom: 125px;
+
+    transform:
+        rotate(35deg)
+        scale(0);
+}
+
+.tulip1 .leaf {
+    animation-delay: 2.7s;
+}
+
+.tulip2 .leaf {
+    animation-delay: 3.7s;
+}
+
+.tulip3 .leaf {
+    animation-delay: 4.7s;
+}
+
+.tulip4 .leaf {
+    animation-delay: 5.7s;
+}
+
+.tulip5 .leaf {
+    animation-delay: 6.7s;
+}
+
+@keyframes leafAppear {
+
+    to {
+        opacity: 1;
+        transform:
+            rotate(-35deg)
+            scale(1);
+    }
+}
+
+/* =========================
+   FLOWER
+========================= */
+
+.flower {
+    position: absolute;
+
+    width: 85px;
+    height: 90px;
+
+    left: 2px;
+    top: 25px;
+
+    transform-origin: bottom center;
+
+    transform:
+        scale(0)
+        rotate(-8deg);
+
+    animation:
+        flowerBloom 2.5s
+        cubic-bezier(.17,.67,.35,1.4)
+        forwards;
+}
+
+.tulip1 .flower {
+    animation-delay: 3.3s;
+}
+
+.tulip2 .flower {
+    animation-delay: 4.3s;
+}
+
+.tulip3 .flower {
+    animation-delay: 5.3s;
+}
+
+.tulip4 .flower {
+    animation-delay: 6.3s;
+}
+
+.tulip5 .flower {
+    animation-delay: 7.3s;
+}
+
+@keyframes flowerBloom {
+
+    0% {
+        transform:
+            scale(0)
+            rotate(-8deg);
+    }
+
+    70% {
+        transform:
+            scale(1.12)
+            rotate(3deg);
+    }
+
+    100% {
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+/* =========================
+   PETALS
+========================= */
+
+.petal {
+    position: absolute;
+
+    width: 45px;
+    height: 72px;
+
+    bottom: 0;
+
+    border-radius:
+        55% 55% 35% 35%;
+
+    background: linear-gradient(
+        135deg,
+        #ff5c88,
+        #d71950
+    );
+
+    box-shadow:
+        inset -5px -5px 10px rgba(0,0,0,0.12);
+
+    transform-origin: bottom center;
+}
+
+.petal.left {
+    left: 0;
+
+    transform:
+        rotate(-20deg);
+}
+
+.petal.center {
+    left: 20px;
+
+    height: 80px;
+
+    z-index: 3;
+}
+
+.petal.right {
+    right: 0;
+
+    transform:
+        rotate(20deg);
+}
+
+/* Petal shine */
+
+.petal.center::after {
+    content: "";
+
+    position: absolute;
+
+    width: 10px;
+    height: 45px;
+
+    top: 10px;
+    left: 17px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.13);
+
+    filter: blur(3px);
+}
+
+/* =========================
+   FLOWER GLOW
+========================= */
+
+.flower::after {
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    left: -18px;
+    top: -5px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,70,120,0.22),
+            transparent 70%
+        );
+
+    filter: blur(15px);
+
+    z-index: -1;
+
+    animation: flowerGlow 3s ease-in-out infinite;
+}
+
+@keyframes flowerGlow {
+
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+/* =========================
+   NATURAL SWAY
+========================= */
+
+@keyframes gentleSway {
+
+    0%, 100% {
+        rotate: -1.5deg;
+    }
+
+    50% {
+        rotate: 2deg;
+    }
+}
+
+/* =========================
+   GROUND
+========================= */
+
+.ground {
+    position: absolute;
+
+    width: 100%;
+    height: 22%;
+
+    bottom: 0;
+
+    background:
+        radial-gradient(
+            ellipse at center bottom,
+            #0b2919,
+            transparent 70%
+        );
+
+    z-index: 5;
+}
+
+/* =========================
+   FIRE FLIES
+========================= */
+
+.firefly {
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #fff7a8;
+
+    box-shadow:
+        0 0 10px #fff7a8,
+        0 0 20px rgba(255,247,168,0.5);
+
+    animation:
+        fireflyMove 8s ease-in-out infinite,
+        fireflyGlow 2s ease-in-out infinite alternate;
+
+    z-index: 12;
+}
+
+@keyframes fireflyMove {
+
+    0% {
+        transform:
+            translate(0,0);
+    }
+
+    25% {
+        transform:
+            translate(50px,-80px);
+    }
+
+    50% {
+        transform:
+            translate(-30px,-150px);
+    }
+
+    75% {
+        transform:
+            translate(70px,-210px);
+    }
+
+    100% {
+        transform:
+            translate(0,-280px);
+    }
+}
+
+@keyframes fireflyGlow {
+
+    from {
+        opacity: 0.2;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+.heart {
+    position: absolute;
+
+    bottom: -30px;
+
+    color: #ff6b91;
+
+    font-size: 18px;
+
+    pointer-events: none;
+
+    z-index: 30;
+
+    animation:
+        heartFloat 7s linear forwards;
+}
+
+@keyframes heartFloat {
+
+    0% {
+        opacity: 0;
+        transform:
+            translateY(0)
+            scale(0.4)
+            rotate(0deg);
+    }
+
+    15% {
+        opacity: 0.8;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translateY(-100vh)
+            translateX(var(--move))
+            scale(1)
+            rotate(25deg);
+    }
+}
+
+/* =========================
+   BOTTOM MESSAGE
+========================= */
+
+.love-note {
+    position: absolute;
+
+    bottom: 4%;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 40;
+
+    font-size: 13px;
+
+    opacity: 0;
+
+    letter-spacing: 2px;
+
+    animation:
+        noteAppear 2s ease 9s forwards;
+}
+
+@keyframes noteAppear {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.65;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .moon {
+        width: 70px;
+        height: 70px;
+        right: 7%;
+    }
+
+    .message {
+        top: 10%;
+    }
+
+    .message h1 {
+        font-size: 34px;
+    }
+
+    .message p {
+        font-size: 13px;
+    }
+
+    .garden {
+        width: 500px;
+        height: 360px;
+    }
+
+    .tulip {
+        transform: scale(0.72);
+    }
+
+    .tulip1 {
+        left: 0;
+    }
+
+    .tulip2 {
+        left: 18%;
+    }
+
+    .tulip3 {
+        left: 38%;
+    }
+
+    .tulip4 {
+        left: 58%;
+    }
+
+    .tulip5 {
+        left: 78%;
+    }
+}
